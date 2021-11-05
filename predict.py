@@ -5,7 +5,7 @@ def price():
     while x < 0:
         tmp = input("choose the mileage : ")
         try:
-            x = int(tmp)
+            x = float(tmp)
             if x < 0:
                 x = -1
                 print("ERROR: needing a positive value")
