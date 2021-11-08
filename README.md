@@ -33,7 +33,9 @@ Veuillez noter que le prixEstime est la même chose que dans notre premier pro-g
 Voici des bonus qui pourrait être utiles :
 
 -Visualiser les données sur un graph avec leur repartition.
+
 -Afficher la ligne résultant de votre regression linéaire sur ce même graphe et voirsi ca marche !
+
 -Un programme qui vérifie la precision de votre algorithme.
 
 ... Et n’importe quoi qui pourrait rendre cet exercice encore meilleur.
