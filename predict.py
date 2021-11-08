@@ -23,7 +23,7 @@ def get_min_max():
                         v[1] = float(l['km'])
             file.close()
     else:  
-        print("Error: file " + FILENAME + "doesn't exist")
+        print("Error: file" + FILENAME + "doesn't exist")
         exit(-1)
     return (v)
 

@@ -41,3 +41,5 @@ Voici des bonus qui pourrait être utiles :
 # Results
 
 <img alt="linear" src="https://user-images.githubusercontent.com/45235527/140805194-b31f35a2-dda6-405f-b2af-4555dc11250f.png">
+
+<img alt="apprentisage" src="https://user-images.githubusercontent.com/45235527/140819537-ae9bf9e6-9897-4507-906e-444bb4fd4969.png">

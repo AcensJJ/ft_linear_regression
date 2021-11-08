@@ -9,6 +9,8 @@ RATIO = 0.1
 ITER = 1000
 PRECI = True
 DRAW = True
+COEF = True
+DRAW_COEF = True
 
 def normalise_data(data, min, max):
     return ((data - min) / (max - min))
@@ -52,10 +54,23 @@ def get_min_max(FILENAME):
                     v[1] = float(l['km'])
         file.close()
         return (v)
+ 
+def cost_fnct(FILENAME, v, t, size):
+    with open(FILENAME, 'r') as file:
+        c = csv.DictReader(file)  
+        somme = 0
+        for l in c:
+            km = normalise_data(float(l['km']), v[0], v[1])
+            price = float(l['price'])
+            somme += calcul0(t, km, price)
+        tmp = 1 / (2*size) * (somme**2)
+        file.close()
+    return int(tmp)
 
-def learn(FILENAME, v, size):
+def learn(FILENAME, v, size, cost):
     t = [0, 0]
     for i in range(ITER):
+        cost.append(cost_fnct(FILENAME, v, t, size))
         with open(FILENAME, 'r') as file:
             c = csv.DictReader(file)
             somme = [0, 0]
@@ -69,18 +84,10 @@ def learn(FILENAME, v, size):
             file.close()
     return t
 
-def calc_precision(FILENAME, v, t, size):
-    preci = 0
-    with open(FILENAME, 'r') as file:
-        c = csv.DictReader(file)
-        for l in c:
-            calc = estimated_price(t, normalise_data(float(l['km']), v[0], v[1]))
-            calc = 100 / float(l['price']) * calc
-            if calc > 100:
-                calc = 200 - calc
-            preci += calc
-        file.close()
-    return round((preci/size), 2)
+def coef_dertermination(y, pred):
+    u = ((y - pred)**2).sum()
+    v = ((y - y.mean())**2).sum()
+    return 1 - u / v
 
 def draw_graph(FILENAME, v, t):
     # plt.xkcd()
@@ -105,21 +112,43 @@ def draw_graph(FILENAME, v, t):
         plt.show()
         file.close()
 
+def draw_coef_derter(cost):
+    plt.title("Courbe d'apprentisage")
+    plt.tick_params(labelcolor='tab:orange')
+    plt.plot(range(ITER), cost, color='tab:red')
+    plt.tight_layout()
+    plt.savefig('learning.png')
+    plt.show()
 
 if (len(sys.argv) < 2):
     print("Error: no file data included")
     exit(-1)
 FILENAME = str(sys.argv[1])
 if os.path.exists(FILENAME):
+    cost = []
     size = get_size_file(FILENAME)
     v = get_min_max(FILENAME)
     print("\n  Welcome to the learning part  \n\nStarting learning", ITER, "time")
-    t = learn(FILENAME, v, size) 
+    t = learn(FILENAME, v, size, cost) 
     print("End\n")
-    create_file(learn(FILENAME, v, size))
+    create_file(t)
     if (PRECI):
-        print("- precision = ", calc_precision(FILENAME, v, t, size), "%")
+        print("- cost =", cost_fnct(FILENAME, v, t, size))
+    if (DRAW_COEF):
+        draw_coef_derter(cost)
+    if (COEF):
+        with open(FILENAME, 'r') as file:
+            pred = []
+            data = pd.read_csv(FILENAME, index_col=False)
+            c = csv.DictReader(file)  
+            somme = 0
+            for l in c:
+                km = normalise_data(float(l['km']), v[0], v[1])
+                pred.append(estimated_price(t, km))
+            file.close()
+            coef = coef_dertermination(data['price'], pred)
+            print("- precision =", round(coef, 2), "%")
     if (DRAW):
         draw_graph(FILENAME, v, t)
 else:
-    print("Error: file " + FILENAME + "doesn't exist")
+    print("Error: file" + FILENAME + "doesn't exist")
