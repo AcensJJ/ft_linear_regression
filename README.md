@@ -20,7 +20,7 @@ Ce que vous devez faireImplémentez un algorithme de regression linéaire sur un
 
 Avant de lancer le programme d’entrainement, theta0 et theta1 auront pour valeur0.
 
--Le second programme sera utilisé pour entrainer votre modèle. Il lira le jeu dedonnées et fera une regression linéaire sur ces données.Une fois la regression linéaire terminée, vous sauvegarderez la valeur de theta0 ettheta1 pour pouvoir l’utiliser dans le premier programme.Vous utiliserez la formule suivante :
+- Le second programme sera utilisé pour entrainer votre modèle. Il lira le jeu dedonnées et fera une regression linéaire sur ces données.Une fois la regression linéaire terminée, vous sauvegarderez la valeur de theta0 ettheta1 pour pouvoir l’utiliser dans le premier programme.Vous utiliserez la formule suivante :
 
 ![formule2](https://user-images.githubusercontent.com/45235527/140348840-4d426b93-b304-44b0-8ab4-152e10ebe1e9.PNG)
 
@@ -32,11 +32,11 @@ Veuillez noter que le prixEstime est la même chose que dans notre premier pro-g
 
 Voici des bonus qui pourrait être utiles :
 
--Visualiser les données sur un graph avec leur repartition.
+- Visualiser les données sur un graph avec leur repartition.
 
--Afficher la ligne résultant de votre regression linéaire sur ce même graphe et voirsi ca marche !
+- Afficher la ligne résultant de votre regression linéaire sur ce même graphe et voirsi ca marche !
 
--Un programme qui vérifie la precision de votre algorithme.
+- Un programme qui vérifie la precision de votre algorithme.
 
 ... Et n’importe quoi qui pourrait rendre cet exercice encore meilleur.
 
