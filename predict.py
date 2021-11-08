@@ -1,7 +1,34 @@
 import os
+import csv
 
-def price():
-    x = -11
+FILENAME = "data.csv"
+
+def normalise_data(data, min, max):
+    return ((data - min) / (max - min))
+
+def get_min_max():
+    v = []
+    if os.path.exists(FILENAME):
+        with open(FILENAME, 'r') as file:
+            c = csv.DictReader(file)
+            for l in c:
+                if (len(v) == 0):
+                    v = [0, 0]
+                    v[0] = (float(l['km']))
+                    v[1] = (float(l['km']))
+                else :
+                    if (v[0] > float(l['km'])):
+                        v[0] = float(l['km'])
+                    if (v[1] < float(l['km'])):
+                        v[1] = float(l['km'])
+            file.close()
+    else:  
+        print("Error: file " + FILENAME + "doesn't exist")
+        exit(-1)
+    return (v)
+
+def mileage():
+    x = -1
     while x < 0:
         tmp = input("choose the mileage : ")
         try:
@@ -15,11 +42,11 @@ def price():
 
 def file_value():
     l = []
-    FILENAME = ".data"
-    # FILENAME = input("Choose your data : ")
+    THETA = ".data"
+    # THETA = input("Choose your data : ")
     LEN = 2
-    if os.path.exists(FILENAME):
-        with open(FILENAME, 'r') as file:
+    if os.path.exists(THETA):
+        with open(THETA, 'r') as file:
             for y in file.readlines():
                 l.append(float(y.strip()))
             if len(l) < LEN:
@@ -29,14 +56,15 @@ def file_value():
                     l.append(0)
             file.close()
     else:
-        print("ERROR: data doesnt exist")
         while len(l) < LEN:
             l.append(0)
     return l
 
 print("\n   Predict\n")
-x = price()
+val = mileage()
+normalise = get_min_max()
+x = normalise_data(val, normalise[0], normalise[1])
 l = file_value()
 price = 0
-price = l[0] + l[1] * x
-print("\nThe price will be " + str(price) + "$ for " + str(x) + "km.")
+price = round(l[0] + l[1] * x, 2)
+print("\nThe price will be " + str(price) + "$ for " + str(val) + "km.")
