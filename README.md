@@ -27,3 +27,17 @@ Avant de lancer le programme d’entrainement, theta0 et theta1 auront pour vale
 Je vous laisse devinez ce à quoi m correspond :)
 
 Veuillez noter que le prixEstime est la même chose que dans notre premier pro-gramme, mais ici il utilise vos valeures temporaires afin de calculer theta0 et theta1.Attention a bien mettre a jour theta0 et theta1 en même temps.
+
+# Bonus
+
+Voici des bonus qui pourrait être utiles :
+
+-Visualiser les données sur un graph avec leur repartition.
+-Afficher la ligne résultant de votre regression linéaire sur ce même graphe et voirsi ca marche !
+-Un programme qui vérifie la precision de votre algorithme.
+
+... Et n’importe quoi qui pourrait rendre cet exercice encore meilleur.
+
+# Results
+
+<img alt="linear" src="https://user-images.githubusercontent.com/45235527/140805194-b31f35a2-dda6-405f-b2af-4555dc11250f.png">
