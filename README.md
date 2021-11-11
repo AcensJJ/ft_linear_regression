@@ -40,6 +40,13 @@ Voici des bonus qui pourrait être utiles :
 
 ... Et n’importe quoi qui pourrait rendre cet exercice encore meilleur.
 
+# Requirements
+
+- python3.10
+- lib:
+    - pip3 install pandas
+    - pip3 install matplotlib
+    
 # Results
 
 <img alt="linear" src="https://user-images.githubusercontent.com/45235527/140805194-b31f35a2-dda6-405f-b2af-4555dc11250f.png">
