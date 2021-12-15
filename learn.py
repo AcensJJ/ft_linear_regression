@@ -26,10 +26,12 @@ def calcul1(t, km, price):
     v2 = estimated_price(t, km) - price
     return v2 * km
     
-def create_file(list):
+def create_file(list, minmax):
     with open(".data", 'w+') as file:
         for l in list:
             file.write(str(l) + "\n")
+        for m in minmax:
+            file.write(str(m) + "\n")
         file.close()
 
 def get_size_file(FILENAME):
@@ -131,7 +133,7 @@ if os.path.exists(FILENAME):
     print("\n  Welcome to the learning part  \n\nStarting learning", ITER, "time")
     t = learn(FILENAME, v, size, cost) 
     print("End\n")
-    create_file(t)
+    create_file(t, v)
     if (PRECI):
         print("- cost =", cost_fnct(FILENAME, v, t, size))
     if (DRAW_COEF):
