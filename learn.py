@@ -63,8 +63,8 @@ def cost_fnct(FILENAME, v, t, size):
         for l in c:
             km = normalise_data(float(l['km']), v[0], v[1])
             price = float(l['price'])
-            somme += calcul0(t, km, price)
-        tmp = 1 / (2*size) * (somme**2)
+            somme += calcul0(t, km, price)**2
+        tmp = 1 / (2*size) * somme
         file.close()
     return int(tmp)
 
