@@ -1,5 +1,4 @@
 import os
-import csv
 
 def normalise_data(data, min, max):
     return ((data - min) / (max - min))

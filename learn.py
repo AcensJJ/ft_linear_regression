@@ -3,7 +3,6 @@ import sys
 import csv
 import pandas as pd
 import matplotlib.pyplot as plt
-from numpy import array
 
 RATIO = 0.1
 ITER = 1000
